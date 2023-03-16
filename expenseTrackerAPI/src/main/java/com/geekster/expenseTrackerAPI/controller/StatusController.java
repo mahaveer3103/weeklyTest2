@@ -16,13 +16,13 @@ public class StatusController {
     StatusService statusService;
 
     @PostMapping("/create-status")
-    public ResponseEntity<String> createStatus(@RequestBody String statusData){
+    public ResponseEntity<String> createStatus(@RequestBody Status statusData){
         Status status = setStatus(statusData);
         int id = statusService.saveStatus(status);
         return new ResponseEntity<>("status saved - "+id, HttpStatus.CREATED);
     }
 
-    private Status setStatus(String statusData) {
+    private Status setStatus(Status statusData) {
         Status status = new Status();
         JSONObject json = new JSONObject(statusData);
         String statusName = json.getString("statusName");
@@ -35,7 +35,7 @@ public class StatusController {
     }
 
     @PutMapping("/update-status/{statusId}")
-    public ResponseEntity<String> updateStatus(@PathVariable int statusId, @RequestBody String requestStatus){
+    public ResponseEntity<String> updateStatus(@PathVariable int statusId, @RequestBody Status requestStatus){
         Status status = setStatus(requestStatus);
         statusService.updateStatus(status,statusId);
         return new ResponseEntity<>("status updated successfully",HttpStatus.OK);

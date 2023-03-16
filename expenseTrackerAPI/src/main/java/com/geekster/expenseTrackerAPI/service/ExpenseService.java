@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -44,8 +45,8 @@ public class ExpenseService {
 
     private void setUpdateExpense(Expense ex, JSONObject updateJson) {
         ex.setTitle(updateJson.getString("title"));
-        ex.setTime(updateJson.getString("time"));
-        ex.setDate(updateJson.getString("date"));
+        Timestamp createdDate = new Timestamp(System.currentTimeMillis());
+        ex.setDate(createdDate);
         ex.setPrice(updateJson.getInt("price"));
         ex.setDescription(updateJson.getString("description"));
         dao.save(ex);
@@ -64,8 +65,8 @@ public class ExpenseService {
         return sum;
     }
 
-//    public long getMonthlyExpense(int userId) {
-//        long sum = dao.getMonthlyExpenseByUserId(userId);
-//        return sum;
-//    }
+    public long getMonthlyExpense(int userId, int month) {
+        long sum = dao.getMonthlyExpenseByUserId(userId,month);
+        return sum;
+    }
 }

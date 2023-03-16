@@ -26,6 +26,6 @@ public interface ExpenseDao extends JpaRepository<Expense,Integer> {
     @Query(value = "select sum(price) from tbl_expense where user_id = :userId and status_id=1",nativeQuery = true)
     long getExpenseByUserId(int userId);
 
-//    @Query(value = "select sum(price) from tbl_expense where user_id =:userId and month(date) = 03 and status_id=1",nativeQuery = true)
-//    long getMonthlyExpenseByUserId(int userId);
+    @Query(value = "select sum(price) from tbl_expense where user_id =:userId and month(date) =:month and status_id=1",nativeQuery = true)
+    long getMonthlyExpenseByUserId(int userId, int month);
 }

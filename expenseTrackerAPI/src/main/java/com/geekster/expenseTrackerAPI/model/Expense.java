@@ -25,15 +25,13 @@ public class Expense {
     @Column(name = "price")
     private Integer price;
     @Column(name = "date")
-    private String date;
+    private Timestamp date;
 
-    @Column(name = "time")
-    private String time;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private Status status;
 }

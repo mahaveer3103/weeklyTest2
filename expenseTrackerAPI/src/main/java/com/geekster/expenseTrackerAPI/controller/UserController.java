@@ -2,6 +2,8 @@ package com.geekster.expenseTrackerAPI.controller;
 
 import com.geekster.expenseTrackerAPI.dao.StatusDao;
 import com.geekster.expenseTrackerAPI.dao.UserDao;
+import com.geekster.expenseTrackerAPI.dto.UserLoginDto;
+import com.geekster.expenseTrackerAPI.dto.UserRegisterDto;
 import com.geekster.expenseTrackerAPI.model.Status;
 import com.geekster.expenseTrackerAPI.model.User;
 import com.geekster.expenseTrackerAPI.service.UserService;
@@ -31,7 +33,7 @@ public class UserController {
     UserDao userDao;
 
     @PostMapping(value = "/register-user")
-    public ResponseEntity<String> registerUser(@RequestBody String requestUser){
+    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDto requestUser){
         JSONObject requestObject = new JSONObject(requestUser);
         JSONObject errorList = validateUser(requestObject);
         if(errorList.isEmpty()){
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login-user")
-    public ResponseEntity<String> loginUser(@RequestBody String requestLogin){
+    public ResponseEntity<String> loginUser(@RequestBody UserLoginDto requestLogin){
         JSONObject jsonLogin = new JSONObject(requestLogin);
         JSONObject errorList = validateLogin(jsonLogin);
         if(errorList.isEmpty()){
@@ -92,7 +94,7 @@ public class UserController {
                 errorList.put(username,"This username already exist please add another username");
             }
         }else {
-            errorList.put("Missing parameter","username");
+            errorList.put("username","Missing parameter");
         }
         if(requestObject.has("password")){
             String password = requestObject.getString("password");
@@ -100,18 +102,18 @@ public class UserController {
                 errorList.put("password", "Please enter valid password eg: User@123");
             }
         }else {
-            errorList.put("Missing parameter","password");
+            errorList.put("password","Missing parameter");
         }
         if(!requestObject.has("first_name")){
-            errorList.put("Missing parameter","first_name");
+            errorList.put("first_name","Missing parameter");
         }
         if(requestObject.has("phone_number")){
             String phoneNumber = requestObject.getString("phone_number");
             if(!CommonUtils.isValidPhoneNumber(phoneNumber)){
-                errorList.put("phoneNumber","Please enter valid phone number");
+                errorList.put(phoneNumber,"Please enter valid phone number");
             }
         }else {
-            errorList.put("Missing parameter","phone_number");
+            errorList.put("phone_number","Missing parameter");
         }
         if(requestObject.has("email_id")){
             String email = requestObject.getString("email_id");
@@ -119,7 +121,7 @@ public class UserController {
                 errorList.put("emailId","Please enter valid email");
             }
         }else {
-            errorList.put("Missing parameter","email_id");
+            errorList.put("email_id","Missing parameter");
         }
         return errorList;
     }
