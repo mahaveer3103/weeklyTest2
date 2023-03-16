@@ -23,7 +23,7 @@
     * UserDao
 
 ### Project Summery
-This application is build so a users can keep track of his daily expenditure. In this app many users can keep track of his expense and get all details regarding where, when and why it is spent and can get the record of it!
+This application is build so a users can keep track of his daily expenditure. In this app user can keep track of his expense and get all details regarding where, when and why it is spent and can get the record of it by monthly expenditure or by whole expense till today!
 
 ## Links
 ## Swagger Link : http://13.48.78.3:8080/swagger-ui/index.html#/
