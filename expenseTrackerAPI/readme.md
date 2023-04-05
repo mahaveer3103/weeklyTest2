@@ -23,8 +23,13 @@
     * UserDao
 
 ### Project Summery
-This application is build so a users can keep track of his daily expenditure. In this app user can keep track of his expense and get all details regarding where, when and why it is spent and can get the record of it by monthly expenditure or by whole expense till today!
+The purpose behind creating an Expense Tracker API is to help individuals manage their finances effectively by keeping track of their expenses. This API aims to provide a simple and convenient way for users to record their expenses and analyze their spending habits. Also this API allows users to easily input their expenses, which are then stored in a database. Users can retrieve their expense records on demand, either for the current month or up until the current date. This enables users to track their spending and identify areas where they may be overspending or where they can cut back to achieve their financial goals.
+
+
+## Below video shows the API test using swagger
+
+https://user-images.githubusercontent.com/112773191/229901384-f6b863fc-9f6b-4339-88e3-fff12b4b5abb.mp4
+
 
 ## Links
-## Swagger Link : http://13.48.78.3:8080/swagger-ui/index.html#/
   ### There are proper mapping given in the controller through which one can access the APIs by cloning it into their device
